@@ -4,16 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using schema = Schema.NET;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
+using Schema.NET;
+using System.Linq;
 
 namespace Book_Tracking_Application_Models
 {
     public class Book
     {
-        [Key]
-        [Required]
-        [HiddenInput]
-        public int Id { get; set; }
 
+        [Key]
         [Required]
         public string ISBN { get; set; }
 
@@ -23,13 +22,24 @@ namespace Book_Tracking_Application_Models
         [Required]
         public string Author { get; set; }
 
-        [DataType(DataType.Date)]
-        [Display(Name = "Release Date")]
-        public DateTime ReleaseDate { get; set; }
-
-        [ForeignKey("Category")]
+        [ForeignKey("NameToken")]
         [Display(Name = "Category")]
-        public int CategoryId { get; set; }
+        public string NameToken { get; set; }
+
+
+        private Thing JSONLD { get; set; } = new Thing();
+
+        public schema.Thing GetJson()
+        {
+            schema.Book book = new schema.Book();
+
+            book.About = new schema.OneOrMany<schema.IThing>(new List<schema.Thing>() { new schema.Thing() { Name = this.Title } });
+            book.Isbn = this.ISBN;
+           // book.Author. = this.Author;
+           // book.ReleaseDate = this.ReleaseDate;
+
+            return book;
+        }
 
     }
 }

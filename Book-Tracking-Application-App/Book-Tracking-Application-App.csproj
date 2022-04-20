@@ -9,7 +9,6 @@
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
-    <None Remove="Pages\Shared\Schema\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
@@ -20,17 +19,17 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Book-Tracking-Application-Context\Book-Tracking-Application-Context.csproj">
+    <ProjectReference Include="..\Book-Tracking-Application-Models\Book-Tracking-Application-Models.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
     <ProjectReference Include="..\Book-Tracking-Application-Migrations\Book-Tracking-Application-Migrations.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\Book-Tracking-Application-Models\Book-Tracking-Application-Models.csproj">
+    <ProjectReference Include="..\Book-Tracking-Application-Migration\Book-Tracking-Application-Migration.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Shared\Schema\" />
+    <ProjectReference Include="..\Book-Tracking-Application-Context\Book-Tracking-Application-Context.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

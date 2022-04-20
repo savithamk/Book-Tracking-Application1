@@ -8,20 +8,17 @@ namespace Book_Tracking_Application_Models
 {
     public class Category
     {
-        [Key]
-        [Required]
-        [HiddenInput]
-        public int Id { get; set; }
 
+        [Key]
         [Required]
         public string NameToken { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [ForeignKey("CategoryType")]
-        [Display(Name = "CategoryType")]
-        public int Type { get; set; }
+        [ForeignKey("Type")]
+        [Display(Name = "Type")]
+        public string Type { get; set; }
 
         public ICollection<Book> Books { get; set; }
     }

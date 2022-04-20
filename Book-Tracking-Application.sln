@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book-Tracking-Application-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book-Tracking-Application-Models", "Book-Tracking-Application-Models\Book-Tracking-Application-Models.csproj", "{5918BBCB-32F3-4ABF-8D6B-877AE6932249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book-Tracking-Application-Migrations", "Book-Tracking-Application-Migrations\Book-Tracking-Application-Migrations.csproj", "{4802B9D2-F864-4409-A8D6-6AD8E5880AE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book-Tracking-Application-Migration", "Book-Tracking-Application-Migration\Book-Tracking-Application-Migration.csproj", "{D5ED6CFE-4D13-4AE0-8EF9-5914C91B32A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{5918BBCB-32F3-4ABF-8D6B-877AE6932249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5918BBCB-32F3-4ABF-8D6B-877AE6932249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5918BBCB-32F3-4ABF-8D6B-877AE6932249}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4802B9D2-F864-4409-A8D6-6AD8E5880AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4802B9D2-F864-4409-A8D6-6AD8E5880AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4802B9D2-F864-4409-A8D6-6AD8E5880AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4802B9D2-F864-4409-A8D6-6AD8E5880AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5ED6CFE-4D13-4AE0-8EF9-5914C91B32A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5ED6CFE-4D13-4AE0-8EF9-5914C91B32A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5ED6CFE-4D13-4AE0-8EF9-5914C91B32A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5ED6CFE-4D13-4AE0-8EF9-5914C91B32A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

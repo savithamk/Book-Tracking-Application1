@@ -28,7 +28,7 @@ namespace Book_Tracking_Application_App
             //Adding dbContext to the service with the required migration
             services.AddDbContext<BookCatalogue>(builder =>
             {
-                builder.UseSqlite("Name=ConnectionStrings:BookCatalogue-Sqlite", b => b.MigrationsAssembly("Book-Tracking-Application-Migrations"));
+                builder.UseSqlite("Name=ConnectionStrings:BookCatalogue-Sqlite", b => b.MigrationsAssembly("Book-Tracking-Application-Migration"));
             });
 
             services.AddRazorPages();

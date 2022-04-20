@@ -7,17 +7,13 @@ namespace Book_Tracking_Application_Models
 {
     public class CategoryType
     {
-        [Key]
-        [Required]
-        [HiddenInput]
-        public int Id { get; set; }
 
+        [Key]
         [Required]
         public string Type { get; set; }
 
         [Required]
         public string Name { get; set; }
-
 
         public ICollection<Category> Categories { get; set; }
 
