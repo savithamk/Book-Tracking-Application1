@@ -12,9 +12,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Book_Tracking_Application_App</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Books Catalogue</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,13 +22,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="navbar-brand text-white" asp-area="" asp-page="/AddCategory">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/AddBook">Book</a>
+                            <a class="navbar-brand text-white" asp-area="" asp-page="/AddCategoryType">Category Types</a>
                         </li>
                     </ul>
                 </div>
@@ -37,6 +34,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <br />
             @RenderBody()
         </main>
     </div>

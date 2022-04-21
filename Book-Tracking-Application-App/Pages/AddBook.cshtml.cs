@@ -28,7 +28,7 @@ namespace Book_Tracking_Application_App.Pages
 
         [FromForm]
         public CategoryType categoryType { get; set; }
-        public List<CategoryType> categoryTypes { get;  set; }
+        public List<CategoryType> CategoryTypes { get;  set; }
 
         public AddBookModel(ILogger<IndexModel> logger, BookCatalogue db)
         {

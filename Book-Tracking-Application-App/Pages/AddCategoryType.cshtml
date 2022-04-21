@@ -1,0 +1,90 @@
+﻿@page
+@using Book_Tracking_Application_Models
+@model Book_Tracking_Application_App.Pages.AddCategoryTypeModel
+@{
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h4 class="card-title">Category Types</h4>
+                    </div>
+                    <div class="col-md-2 float-right">
+                        <button type="button" class="btn btn-outline-success" id="addNewCategoryTypeBtn" onclick="showNewCategoryTypeModal()">
+                            Add New
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-condensed table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (CategoryType item in Model.CategoryTypes)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@item.Type</td>
+                                <td>@item.Name</td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="row hidden" id="addNewCategoryType">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header text-white bg-success">
+                <h5 class="card-title">New Category Type</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-4">
+                        <label class="form-label" for="type">Type</label>
+                        <input class="form-control" asp-for="categoryType.Type" type="text" id="type" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label" for="name">Name</label>
+                        <input class="form-control" asp-for="categoryType.Name" type="text" id="name" />
+                    </div>
+                    <br />
+                    <div>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hidden {
+        display: none
+    }
+</style>
+<script>$(document).ready(function () {
+    $("#addNewCategoryType").addClass('hidden');
+    });
+    function showNewCategoryTypeModal() {
+        $("#addNewCategoryType").removeClass('hidden');
+    }
+</script>
