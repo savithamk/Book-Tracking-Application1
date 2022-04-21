@@ -1,0 +1,72 @@
+﻿@page
+@using Book_Tracking_Application_Models
+@model Book_Tracking_Application_App.Pages.AddBookModel
+@{
+}
+
+<section class="custom-class">
+    <form method="post">
+        <div class="mb-4">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" asp-for="book.Title" type="text" id="title" />
+        </div>
+        <div class="mb-2">
+            <label class="form-label" for="isbn">ISBN</label>
+            <input class="form-control" asp-for="book.ISBN" type="text" id="isbn" />
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="author">Author</label>
+            <input class="form-control" asp-for="book.Author" type="text" id="author" />
+        </div>
+        <div class="mb-4">
+        </div>
+        <div class="mb-4">
+
+
+
+            <span class="text-danger" asp-validation-for="categoryType.Type"></span>
+            <label asp-for="categoryType.Type"></label>
+            <select asp-for="categoryType.Type">
+                <option value="">--- Pick a Category --</option>
+                <option value="ADFICN">Adult Fiction</option>
+                <option value="CHFICN">Children's Fiction</option>
+                <option value="ATBGY">Autobiography</option>
+                <option value="HTRY">History</option>
+                <option value="PHSY">Philosophy</option>
+                <option value="SCI">Science</option>
+                <option value="WTPR">Whitepaper</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Book item in Model.Books)
+                    {
+                    <tr>
+                        <th ></th>
+                        <td>@item.ISBN</td>
+                        <td>@item.Title</td>
+                        <td>@item.Author</td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
