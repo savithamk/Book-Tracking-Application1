@@ -35,9 +35,6 @@ namespace Book_Tracking_Application_Models
 
             book.About = new schema.OneOrMany<schema.IThing>(new List<schema.Thing>() { new schema.Thing() { Name = this.Title } });
             book.Isbn = this.ISBN;
-           // book.Author. = this.Author;
-           // book.ReleaseDate = this.ReleaseDate;
-
             return book;
         }
 

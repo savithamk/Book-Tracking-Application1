@@ -60,11 +60,11 @@
             <form method="post">
                 <div class="mb-4">
                     <label class="form-label" for="nameToken">Name Token</label>
-                    <input class="form-control" asp-for="category.NameToken" type="text" id="nameToken" />
+                    <input class="form-control" asp-for="category.NameToken" type="text" id="nameToken" required maxlength="20"/>
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="description">Description</label>
-                    <input class="form-control" asp-for="category.Description" type="text" id="description" />
+                    <input class="form-control" asp-for="category.Description" type="text" id="description" required maxlength="20"/>
                 </div>
                 <div class="mb-4">
                 </div>

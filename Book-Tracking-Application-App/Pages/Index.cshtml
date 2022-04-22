@@ -5,10 +5,14 @@
     ViewData["Title"] = "Home page";
 }
 
-
 @section JSONLD
 {
-    @Html.Raw(Model.JSONLD.ToHtmlEscapedString());
+    [
+    @foreach (var entry in Model.JSONLD)
+    {
+        @Html.Raw(entry.ToHtmlEscapedString() + ',');
+    }
+    ]
 }
 
 <div class="row">
@@ -34,19 +38,27 @@
                             <th scope="col">ISBN</th>
                             <th scope="col">Title</th>
                             <th scope="col">Author</th>
+                            <th scope="col">Category</th>
                             <th scope="col">#</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (Book item in Model.Books)
                         {
-                            <tr>
-                                <th></th>
-                                <td>@item.ISBN</td>
-                                <td>@item.Title</td>
-                                <td>@item.Author</td>
-
-                            </tr>
+                        <tr>
+                            <th></th>
+                            <td>@item.ISBN</td>
+                            <td>@item.Title</td>
+                            <td>@item.Author</td>
+                            <td>@item.NameToken</td>
+                            <td>
+                                    <!--Form to delete a book record-->
+                                    <form asp-page-handler="delete" method="post">
+                                        <button class="btn btn-danger">Delete</button>
+                                        <input type="hidden" name="ISBN" value="@item.ISBN" />
+                                    </form>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -67,20 +79,19 @@
                 <form method="post">
                     <div class="mb-3">
                         <label class="form-label" for="title">Title</label>
-                        <input class="form-control" asp-for="book.Title" type="text" id="title" />
+                        <input class="form-control" asp-for="book.Title" type="text" id="title" required maxlength="20" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="isbn">ISBN</label>
-                        <input class="form-control" asp-for="book.ISBN" type="text" id="isbn" />
+                        <input class="form-control" asp-for="book.ISBN" type="text" id="isbn" required maxlength="20" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="author">Author</label>
-                        <input class="form-control" asp-for="book.Author" type="text" id="author" />
+                        <input class="form-control" asp-for="book.Author" type="text" id="author" required maxlength="20" />
                     </div>
                     <div class="mb-4">
-                        <span class="text-danger" asp-validation-for="category.NameToken"></span>
                         <label asp-for="category.NameToken"></label>
-                        <select asp-for="category.NameToken" asp-items="@Model.CategorySelectionItems">
+                        <select asp-for="category.NameToken" asp-items="@Model.CategorySelectionItems" >
                             <option value="">--- Pick a Category --</option>
                         </select>
                     </div>
@@ -93,9 +104,10 @@
 </div>
 
 <script>$(document).ready(function () {
-        $("#addNewBook").addClass('hidden');
+    $("#addNewBook").addClass('hidden');
+    
     });
     function showNewBookModal() {
         $("#addNewBook").removeClass('hidden');
     }
-</script>
+    </script>
