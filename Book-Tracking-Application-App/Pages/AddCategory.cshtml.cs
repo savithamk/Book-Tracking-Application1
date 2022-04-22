@@ -46,9 +46,9 @@ namespace Book_Tracking_Application_App.Pages
                 CategorySelectionItems.Add(item);
             }
             foreach (Category category in categoryQuery.ToList()) {
-                var categoryType = Categories.Find(categoryType => category.Type.Equals(category.Type));
+                var typeDescription = Categories.Find(categoryType => category.Type.Equals(category.Type));
                 if (null != categoryType) {
-                    category.Type = categoryType.ToString();
+                    category.Type = typeDescription.Description;
                 }
                 Categories.Add(category);
             }

@@ -77,16 +77,11 @@
                         <label class="form-label" for="author">Author</label>
                         <input class="form-control" asp-for="book.Author" type="text" id="author" />
                     </div>
-                    <div class="mb-3">
-                        <select class="form-select form-select-md" asp-for="categoryType.Type">
+                    <div class="mb-4">
+                        <span class="text-danger" asp-validation-for="category.NameToken"></span>
+                        <label asp-for="category.NameToken"></label>
+                        <select asp-for="category.NameToken" asp-items="@Model.CategorySelectionItems">
                             <option value="">--- Pick a Category --</option>
-                            <option value="ADFICN">Adult Fiction</option>
-                            <option value="CHFICN">Children's Fiction</option>
-                            <option value="ATBGY">Autobiography</option>
-                            <option value="HTRY">History</option>
-                            <option value="PHSY">Philosophy</option>
-                            <option value="SCI">Science</option>
-                            <option value="WTPR">Whitepaper</option>
                         </select>
                     </div>
 
@@ -97,11 +92,6 @@
     </div>
 </div>
 
-<style>
-    .hidden {
-        display: none
-    }
-</style>
 <script>$(document).ready(function () {
         $("#addNewBook").addClass('hidden');
     });

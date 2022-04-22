@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Book_Tracking_Application_Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,12 +26,13 @@ namespace Book_Tracking_Application_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
             //Adding dbContext to the service with the required migration
             services.AddDbContext<BookCatalogue>(builder =>
             {
                 builder.UseSqlite("Name=ConnectionStrings:BookCatalogue-Sqlite", b => b.MigrationsAssembly("Book-Tracking-Application-Migration"));
             });
-
+            
             services.AddRazorPages();
         }
 
@@ -47,8 +49,22 @@ namespace Book_Tracking_Application_App
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
+
+            app.UseResponseCaching();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                {
+                    Public = true,
+                    MaxAge = TimeSpan.FromDays(365)
+                };
+                await next();
+            });
+
+            
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -11,6 +11,7 @@ using Schema.NET;
 using Book = Schema.NET.Book;
 using Book_Tracking_Application_Context;
 using Book_Tracking_Application_Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Book_Tracking_Application_App.Pages
 {
@@ -31,9 +32,7 @@ namespace Book_Tracking_Application_App.Pages
         public Category category { get; set; }
         public List<Category> Categories { get; private set; }
 
-        [FromForm]
-        public CategoryType categoryType { get; set; }
-        public List<CategoryType> CategoryTypes { get; set; }
+        public List<SelectListItem> CategorySelectionItems = new List<SelectListItem>();
 
         public IndexModel(ILogger<IndexModel> logger, BookCatalogue db)
         {
@@ -46,64 +45,32 @@ namespace Book_Tracking_Application_App.Pages
 
         public void OnGet()
         {
-            var bookQuery = _db.Books.Select(book => book);
-            Books = bookQuery.ToList();
-
+            Books = new List<local.Book>();
+            Categories = new List<Category>();
+            var categoriesQuery = _db.Categories.Select(category => category);
+            var bookQuery = _db.Books.Select(category => category);
+            Categories = categoriesQuery.ToList();
+            foreach (Category type in Categories)
+            {
+                SelectListItem item = new SelectListItem(type.Description, type.NameToken);
+                CategorySelectionItems.Add(item);
+            }
+            foreach (local.Book book in bookQuery.ToList())
+            {
+                var typeDescription = Books.Find(category => category.NameToken.Equals(category.NameToken));
+                if (null != category)
+                {
+                   // book.NameToken = typeDescription.NameToken;
+                }
+                Books.Add(book);
+            }
         }
 
         public RedirectToPageResult OnPost()
         {
-            if (categoryType.Type.Equals("ADFICN"))
-            {
-                categoryType.Name = "Adult Fiction";
-                category.NameToken = "ADFICN";
-                category.Description = "Fiction";
-
-            }
-            else if (categoryType.Type.Equals("CHFICN"))
-            {
-                categoryType.Name = "Children's Fiction";
-                category.NameToken = "CHFICN";
-                category.Description = "Fiction";
-            }
-            else if (categoryType.Type.Equals("ATBGY"))
-            {
-                categoryType.Name = "Autobiography";
-                category.NameToken = "ATBGY";
-                category.Description = "Non-Fiction";
-            }
-            else if (categoryType.Type.Equals("HTRY"))
-            {
-                categoryType.Name = "History";
-                category.NameToken = "HTRY";
-                category.Description = "Non-Fiction";
-            }
-            else if (categoryType.Type.Equals("PHSY"))
-            {
-                categoryType.Name = "Philosophy";
-                category.NameToken = "PHSY";
-                category.Description = "Non-Fiction";
-            }
-            else if (categoryType.Type.Equals("SCI"))
-            {
-                categoryType.Name = "Science";
-                category.NameToken = "SCI";
-                category.Description = "Non-Fiction";
-            }
-            else if (categoryType.Type.Equals("WTPR"))
-            {
-                categoryType.Name = "Whitepaper";
-                category.NameToken = "WTPR";
-                category.Description = "Non-Fiction";
-            }
-
             book.NameToken = category.NameToken;
-            category.Type = categoryType.Type;
             _db.Add<local.Book>(book);
-            _db.Add<Category>(category);
-            _db.Add<CategoryType>(categoryType);
             _db.SaveChangesAsync();
-
             return RedirectToPage();
         }
 

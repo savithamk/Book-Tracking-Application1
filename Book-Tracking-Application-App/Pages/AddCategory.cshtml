@@ -73,8 +73,6 @@
                     <label asp-for="categoryType.Type"></label>
                     <select asp-for="categoryType.Type" asp-items="@Model.CategorySelectionItems">
                         <option value="">--- Pick a Category Type--</option>
-                        <!-- <option value="FICTN">Fiction</option>
-     <option value="NFICTN">Non-Fiction</option> -->
                     </select>
                 </div>
                 <div>
@@ -86,11 +84,6 @@
 </div>
 </div>
 
-<style>
-    .hidden {
-        display: none
-    }
-</style>
 <script>$(document).ready(function () {
         $("#addNewCategory").addClass('hidden');
     });
